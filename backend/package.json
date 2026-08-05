@@ -1,0 +1,15 @@
+{
+  "name": "somaiyasat-backend",
+  "version": "1.0.0",
+  "description": "Telemetry simulator and AI data-router service for the SomaiyaSat / SomaiyaPod mission demo (KJS-SRS-01)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
