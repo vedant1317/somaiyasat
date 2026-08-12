@@ -33,6 +33,9 @@ Deploy from the repository root. The included `vercel.json` builds the frontend 
 the deployed site keeps using the same `/api/stream` and `/api/command` paths as local
 development.
 
+In the Vercel dashboard, use the `Other` preset, set the root directory to the repository
+root, and let `vercel.json` control the build.
+
 If you connect the repo to Vercel manually, leave the project root at the repository root
 and let the config file drive the build output.
 
