@@ -26,6 +26,16 @@ npm install --prefix frontend && npm run dev --prefix frontend
 
 Then open <http://localhost:5180>. The frontend proxies `/api` to the backend on port 5175.
 
+## Deploying on Vercel
+
+Deploy from the repository root. The included `vercel.json` builds the frontend from
+`frontend/` and exposes the simulator endpoints as Vercel functions under `/api/*`, so
+the deployed site keeps using the same `/api/stream` and `/api/command` paths as local
+development.
+
+If you connect the repo to Vercel manually, leave the project root at the repository root
+and let the config file drive the build output.
+
 ## Layout
 
 ```
