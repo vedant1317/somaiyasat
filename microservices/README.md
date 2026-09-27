@@ -2,6 +2,8 @@
 
 Same mission site and ground station as the monolith in `frontend/` and `backend/`. The spacecraft control loop is split into services that own one part of the vehicle. The browser still talks to a single `/api` surface.
 
+Presentation notes, the stack, each service contract, the control loop, and a live demo script are in [docs/](docs/README.md).
+
 ## Plan
 
 The monolith kept orbit geometry, battery state, the onboard queue, the AI router, and the SSE ground link in one process. The clone separates those along the same boundaries the mission already describes: deployer/orbit, power, payload queue, and the router. A gateway is the only process the UI knows about. It runs the one-hertz loop, calls the services in order, and publishes one telemetry frame.

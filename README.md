@@ -39,6 +39,12 @@ root, and let `vercel.json` control the build.
 If you connect the repo to Vercel manually, leave the project root at the repository root
 and let the config file drive the build output.
 
+## Microservice clone
+
+`microservices/` is the same mission site and ground station split into orbit, power, queue, router, and a gateway. The monolith above is unchanged and is still what Vercel deploys.
+
+How to run the clone, and the notes for a presentation (stack, service boundaries, the one-hertz loop, demo script), are in [`microservices/docs/`](microservices/docs/README.md).
+
 ## Layout
 
 ```
