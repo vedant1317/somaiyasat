@@ -1,0 +1,74 @@
+services:
+  orbit:
+    build: .
+    command: ["node", "services/orbit/server.js"]
+    environment:
+      PORT: "5211"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:5211/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  power:
+    build: .
+    command: ["node", "services/power/server.js"]
+    environment:
+      PORT: "5212"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:5212/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  queue:
+    build: .
+    command: ["node", "services/queue/server.js"]
+    environment:
+      PORT: "5213"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:5213/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  router:
+    build: .
+    command: ["node", "services/router/server.js"]
+    environment:
+      PORT: "5214"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:5214/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  gateway:
+    build: .
+    command: ["node", "services/gateway/server.js"]
+    environment:
+      PORT: "8080"
+      ORBIT_URL: http://orbit:5211
+      POWER_URL: http://power:5212
+      QUEUE_URL: http://queue:5213
+      ROUTER_URL: http://router:5214
+    ports:
+      - "8080:8080"
+    depends_on:
+      orbit:
+        condition: service_healthy
+      power:
+        condition: service_healthy
+      queue:
+        condition: service_healthy
+      router:
+        condition: service_healthy
+
+  web:
+    build: ./web
+    environment:
+      API_PROXY: http://gateway:8080
+    ports:
+      - "5181:5181"
+    depends_on:
+      - gateway

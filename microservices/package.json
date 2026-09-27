@@ -1,0 +1,15 @@
+{
+  "name": "somaiyasat-microservices",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Microservice clone of the SomaiyaSat / SomaiyaPod ground-station simulator",
+  "scripts": {
+    "start": "node start.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
