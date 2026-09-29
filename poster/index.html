@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>SomaiyaSat — Digital Marketing Poster</title>
+<style>
+  @page { size: 841mm 594mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 841mm;
+    height: 594mm;
+    overflow: hidden;
+    background: #efeae2;
+    color: #1c1916;
+    font-family: Inter, "Liberation Sans", sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .poster {
+    width: 841mm;
+    height: 594mm;
+    padding: 6.5mm 8mm 5.5mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3.2mm;
+  }
+
+  header {
+    background: linear-gradient(105deg, #4c0f1c 0%, #7a1830 58%, #5c1224 100%);
+    color: #fff;
+    border-radius: 3.5mm;
+    padding: 5.2mm 7mm 5mm;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6mm;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1.4mm;
+    background: linear-gradient(90deg, #e2c27a, #f3e2b0, #c4a15a);
+  }
+  .uni { font-size: 11pt; letter-spacing: 0.14em; text-transform: uppercase; color: #f3e2b0; font-weight: 600; }
+  .school { margin-top: 0.6mm; font-size: 10.5pt; color: #f6efe6; }
+  .dept { font-size: 10pt; color: #f0d7c4; }
+  h1 {
+    margin-top: 2.2mm;
+    font-size: 22.5pt;
+    line-height: 1.12;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    max-width: 195mm;
+  }
+  h1 span { color: #f3e2b0; }
+  .meta { margin-top: 2.2mm; font-size: 10pt; color: #f8efe8; line-height: 1.45; }
+  .meta b { color: #fff; font-weight: 650; }
+  .qrbox {
+    background: #fff;
+    border-radius: 2.5mm;
+    padding: 2mm 2.4mm 2.2mm;
+    text-align: center;
+    color: #4c0f1c;
+    width: 34mm;
+  }
+  .qrbox img { width: 26mm; height: 26mm; display: block; margin: 0 auto; }
+  .qrbox p { font-size: 7pt; font-weight: 700; margin-top: 0.8mm; letter-spacing: 0.02em; line-height: 1.2; }
+
+  .cols {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1.02fr 1.08fr 1.02fr;
+    gap: 3.6mm;
+    align-items: stretch;
+  }
+  .col { display: flex; flex-direction: column; gap: 3.2mm; }
+
+  section.card {
+    background: #fffdf9;
+    border: 0.35mm solid #e4d9cc;
+    border-radius: 2.8mm;
+    padding: 3.4mm 3.8mm 3.6mm;
+  }
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 2.2mm;
+    font-size: 13.5pt;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+    color: #7a1830;
+    margin-bottom: 1.8mm;
+    line-height: 1.15;
+  }
+  h2 .n {
+    flex: none;
+    width: 6.2mm;
+    height: 6.2mm;
+    border-radius: 50%;
+    background: #7a1830;
+    color: #f3e2b0;
+    font-size: 8.5pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+  ul { padding-left: 4.2mm; }
+  li { font-size: 13pt; line-height: 1.38; margin-bottom: 1.8mm; color: #2a2622; }
+  li:last-child { margin-bottom: 0; }
+  p.body { font-size: 13pt; line-height: 1.38; color: #2a2622; }
+  .cite { font-size: 10pt; line-height: 1.32; color: #3a342e; margin-bottom: 1.3mm; }
+  .gap {
+    margin-top: 1.4mm;
+    background: #fbf3e4;
+    border-left: 1.1mm solid #c4a15a;
+    padding: 1.5mm 2.2mm;
+    font-size: 8.7pt;
+    line-height: 1.32;
+  }
+
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+    margin-top: 1.4mm;
+  }
+  .row { display: flex; align-items: center; gap: 1.4mm; flex-wrap: wrap; }
+  .pg {
+    background: #1c2430;
+    color: #f4efe6;
+    border-radius: 1.6mm;
+    padding: 1.3mm 2.2mm;
+    font-size: 8pt;
+    line-height: 1.15;
+  }
+  .pg b { display: block; color: #f3e2b0; font-size: 8.4pt; font-weight: 650; }
+  .pg span { display: block; color: #d9d0c4; font-size: 7.4pt; }
+  .pg.hot { background: #7a1830; }
+  .pg.hot span { color: #f6e4c4; }
+  .arrow { color: #7a1830; font-weight: 700; font-size: 11pt; }
+  .hint { font-size: 8pt; color: #5c564e; margin-top: 1.3mm; line-height: 1.3; }
+
+  table.race {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5mm;
+    font-size: 8.2pt;
+  }
+  table.race th, table.race td {
+    text-align: left;
+    vertical-align: top;
+    padding: 1.1mm 1.4mm;
+    border-bottom: 0.25mm solid #eadfD0;
+  }
+  table.race th { color: #7a1830; font-size: 7.6pt; letter-spacing: 0.06em; text-transform: uppercase; }
+  table.race td:first-child { font-weight: 700; width: 18mm; color: #4c0f1c; }
+
+  .shots {
+    flex: 0 0 auto;
+    background: #fffdf9;
+    border: 0.35mm solid #e4d9cc;
+    border-radius: 2.8mm;
+    padding: 3mm 3.4mm 2.8mm;
+  }
+  .shotgrid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1fr 1fr 1fr;
+    gap: 2.4mm;
+    margin-top: 1.6mm;
+  }
+  figure { margin: 0; }
+  figure img {
+    width: 100%;
+    height: 108mm;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 1.6mm;
+    border: 0.3mm solid #1c2430;
+    display: block;
+    background: #0e1420;
+  }
+  figcaption {
+    margin-top: 1mm;
+    font-size: 7.6pt;
+    line-height: 1.25;
+    color: #3a342e;
+  }
+  figcaption b { color: #7a1830; }
+
+  .closer {
+    display: grid;
+    grid-template-columns: 1.05fr 1.15fr 1.05fr 1.2fr;
+    gap: 3.2mm;
+  }
+  .aud {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.6mm;
+    margin-top: 1.6mm;
+  }
+  .aud div {
+    background: #fbf6ee;
+    border-radius: 1.6mm;
+    padding: 1.5mm 1.8mm;
+    font-size: 7.8pt;
+    line-height: 1.28;
+    color: #2a2622;
+  }
+  .aud strong { display: block; color: #7a1830; font-size: 7.6pt; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.4mm; }
+
+  .proof {
+    display: grid;
+    grid-template-columns: 0.9fr 1.6fr;
+    gap: 3mm;
+    align-items: stretch;
+  }
+  .formula, .rails {
+    background: #4c0f1c;
+    color: #fff8f2;
+    border-radius: 2.6mm;
+    padding: 3.2mm 4mm;
+  }
+  .formula span { display: block; font-size: 8.5pt; letter-spacing: 0.08em; text-transform: uppercase; color: #f3e2b0; }
+  .formula strong { display: block; margin-top: 1.2mm; font-size: 13pt; font-weight: 650; line-height: 1.25; }
+  .rails { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2.4mm; background: transparent; padding: 0; }
+  .rails div { background: #fffdf9; color: #2a2622; border: 0.35mm solid #e4d9cc; border-radius: 2.2mm; padding: 2.4mm 2.6mm; font-size: 9.5pt; line-height: 1.28; }
+  .rails b { display: block; color: #7a1830; font-size: 9pt; margin-bottom: 0.6mm; }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8pt;
+    color: #5c4638;
+    padding: 0 1mm;
+  }
+  footer strong { color: #4c0f1c; }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <header>
+      <div>
+        <div class="uni">Somaiya Vidyavihar University</div>
+        <div class="school">K J Somaiya School of Engineering · Department of Information Technology</div>
+        <h1>SomaiyaSat Online: Inbound Content Marketing for a <span>PocketQube Mission Website</span></h1>
+        <div class="meta">
+          Course: Digital Marketing (216U04E734) &nbsp;|&nbsp; Lab CA: Poster Presentation<br>
+          <b>Vedant Walunj (16010423114)</b> &nbsp;|&nbsp; <b>Vedant Singh (16010423111)</b> &nbsp;|&nbsp; <b>Ayush Tiwari (16010423121)</b><br>
+          Class: LY B.Tech IT &nbsp;|&nbsp; Div: A &nbsp;|&nbsp; Batch: ____ &nbsp;&nbsp; Faculty in-charge: Prof. Poonam Narkhede / Dr. Ankita Nagmothe
+        </div>
+      </div>
+      <div class="qrbox">
+        <img src="assets/qr.png" alt="QR code for somaiyasat.vercel.app" />
+        <p>somaiyasat.vercel.app</p>
+      </div>
+    </header>
+
+    <div class="cols">
+      <div class="col">
+        <section class="card">
+          <h2><span class="n">1</span> Introduction</h2>
+          <ul>
+            <li>SomaiyaSat is a 5 cm PocketQube released by SomaiyaPod (use case KJS-SRS-01, with ReOrbit, Finland). After deployment it has one radio, an average power budget under 1 W, and only a short pass over a ground station in low Earth orbit.</li>
+            <li>Four downlink modes share that radio: TT&amp;C housekeeping, Codec2 voice, M17 voice and data, and SSTV images. Something onboard has to decide, every second, which frame is both important and actually receivable.</li>
+            <li>The audiences — KJSIT and KJSSE students, faculty, the collaborator, and the global amateur-radio (HAM) community — are not in one room. The motivation for this study is to give that mission a public digital channel.</li>
+            <li>The real-world product is already deployed at somaiyasat.vercel.app: a mission site plus a ground station whose routing line is computed on the server, not played back as a scripted animation.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2><span class="n">2</span> Problem statement</h2>
+          <ul>
+            <li>A student space mission is easy to file as a report and hard to understand in a minute. Without a designed journey, a visitor never sees why manual scheduling fails inside a pass, what the AI router does, or that the ground station is actually deciding.</li>
+            <li>Scope is the owned website only: Home, Mission, Architecture, Program, and Ground Station. Boundaries: no paid ads and no social campaign in this lab. The site is a demonstration — orbit time, link budget and battery are compressed, and it is not a live spacecraft feed.</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="col">
+        <section class="card">
+          <h2><span class="n">3</span> Objectives</h2>
+          <ul>
+            <li>Position SomaiyaSat &amp; SomaiyaPod with one offer: a PocketQube that deploys itself, decides what to send home, and serves amateur radio across four multiplexed modes.</li>
+            <li>Move a visitor from awareness to action with a primary call to action, “Open ground station”, and a secondary path, “Read the mission”.</li>
+            <li>Make the technical proof marketable: every routing choice is scored and explained, so the demo is also the trust message for faculty and for the HAM community named as the beneficiary.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2><span class="n">4</span> Literature review</h2>
+          <p class="body" style="margin-bottom:1.4mm">Strategy used to read the work: inbound content marketing, planned with the RACE journey (Reach, Act, Convert, Engage).</p>
+          <p class="cite">Chaffey &amp; Ellis-Chadwick (2019) — owned media and a planned journey outperform one-off promotion when the goal is understanding, not a single transaction.</p>
+          <p class="cite">Pulizzi (2014) and Hollebeek &amp; Macky (2019) — content earns trust when it answers the audience’s question; engagement follows usefulness, not louder claims.</p>
+          <p class="cite">Kotler, Kartajaya &amp; Setiawan (2017) — Marketing 4.0 treats aware-to-advocate as a connected path. Isolated pages do not make a journey.</p>
+          <div class="gap"><b>Gap.</b> Student satellite projects usually stop at a technical report. They rarely publish a public path that both explains the constraint and lets a visitor watch the scheduler decide.</div>
+        </section>
+
+      </div>
+
+      <div class="col">
+        <section class="card">
+          <h2><span class="n">5</span> Methodology / website design plan</h2>
+          <p class="body">Five pages, one persistent navigation bar. Home also deep-links so the short path and the long path both stay available.</p>
+          <div class="flow">
+            <div class="row">
+              <div class="pg"><b>Home</b><span>/</span></div>
+              <span class="arrow">→</span>
+              <div class="pg hot"><b>Ground Station</b><span>/dashboard</span></div>
+              <span class="hint">primary CTA · one click</span>
+            </div>
+            <div class="row">
+              <div class="pg"><b>Home</b><span>/</span></div>
+              <span class="arrow">→</span>
+              <div class="pg"><b>Mission</b><span>/mission</span></div>
+              <span class="arrow">→</span>
+              <div class="pg"><b>Architecture</b><span>/architecture</span></div>
+              <span class="arrow">→</span>
+              <div class="pg"><b>Program</b><span>/program</span></div>
+              <span class="arrow">→</span>
+              <div class="pg hot"><b>Ground Station</b><span>/dashboard</span></div>
+            </div>
+          </div>
+          <p class="hint">Consideration path: problem and objectives, then how the deployer, spacecraft and ground segment connect, then the KJSIT / KJSSE program map, then the live demo.</p>
+          <table class="race">
+            <tr><th>RACE</th><th>What the site does</th></tr>
+            <tr><td>Reach</td><td>Public URL, mission id KJS-SRS-01, headline, and four proof stats: 5 cm, &lt; 1 W, 4 modes, LEO.</td></tr>
+            <tr><td>Act</td><td>Problem cards on Home and “Why manual control does not scale” on Mission.</td></tr>
+            <tr><td>Convert</td><td>Amber “Open ground station” button. Secondary text link: “Read the mission”.</td></tr>
+            <tr><td>Engage</td><td>STREAM LIVE dashboard: phase, SNR, battery, queue, and the reason for the current mode. Commands (force mode, safe mode, SSTV capture) let a visitor participate.</td></tr>
+          </table>
+        </section>
+
+        <section class="card">
+          <h2><span class="n">6</span> Implementation details</h2>
+          <ul>
+            <li><b>Page design.</b> A dark mission-control identity separates the site from a generic college brochure. Headlines stay short, stats are scannable, and one amber action carries the eye. The nav never disappears, so no page is a dead end. Architecture shows SomaiyaPod → SomaiyaSat → ground segment as a block diagram a non-specialist can follow.</li>
+            <li><b>Strategy selected.</b> Pull marketing through owned content, not paid reach. Audiences on the site itself: students and faculty (KJSIT / KJSSE), collaborator ReOrbit, and the global HAM community as beneficiary.</li>
+            <li><b>Tied to the product.</b> The router scores each queued item as 0.40·priority + 0.25·urgency + 0.25·link margin + 0.10·power efficiency. Modes below their SNR floor are dropped first. Guard rails run before the policy: no usable link, a 25 s operator override, safe mode below 25% state of charge, and a watchdog if housekeeping is missed. The dashboard prints the rationale — the claim the marketing copy makes, shown rather than asserted.</li>
+          </ul>
+          <div class="aud">
+            <div><strong>Students &amp; faculty</strong>KJSIT and KJSSE. Recruitment and academic credibility.</div>
+            <div><strong>Collaborator</strong>ReOrbit, Finland, named on the mission site.</div>
+            <div><strong>HAM community</strong>Global amateur radio, the stated beneficiary.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="proof">
+      <div class="formula">
+        <span>Router score the site explains</span>
+        <strong>0.40 priority + 0.25 urgency + 0.25 link + 0.10 power</strong>
+      </div>
+      <div class="rails">
+        <div><b>1 · Link floor</b>No usable link, nothing is sent.</div>
+        <div><b>2 · Operator</b>An uplink wins for 25 seconds.</div>
+        <div><b>3 · Safe mode</b>Under 25% charge, TT&amp;C only.</div>
+        <div><b>4 · Watchdog</b>Missed housekeeping forces TT&amp;C.</div>
+        <div><b>5 · Policy</b>Otherwise the highest feasible score.</div>
+      </div>
+    </section>
+
+    <section class="shots">
+      <h2><span class="n">7</span> Results &amp; discussion — live pages from the deployed site</h2>
+      <div class="shotgrid">
+        <figure>
+          <img src="assets/home.png" alt="Home page of somaiyasat.vercel.app" />
+          <figcaption><b>Home.</b> Offer, proof stats, and the amber call to action.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/mission.png" alt="Mission page" />
+          <figcaption><b>Mission.</b> Use case, beneficiaries, and the problem in plain language.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/architecture.png" alt="Architecture page" />
+          <figcaption><b>Architecture.</b> Deployer, spacecraft router, and ground segment.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/program.png" alt="Program page" />
+          <figcaption><b>Program.</b> Workflow and how the mission maps onto KJSIT and KJSSE.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/dashboard.png" alt="Ground station dashboard" />
+          <figcaption><b>Ground station.</b> Live pass, link, queue, and the router’s reason.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="closer">
+      <section class="card">
+        <h2><span class="n">8</span> Key findings</h2>
+        <ul>
+          <li>One primary button plus a persistent nav joins five pages. Extra menus would compete with the demonstration.</li>
+          <li>The live stream is the engagement asset. Decisions are computed every simulated second, so the ground station can show the link floor, safe mode, and policy.</li>
+          <li>Explainable scores turn a power and bandwidth constraint into a trust message for faculty and for the amateur-radio audience.</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2><span class="n">9</span> Conclusion</h2>
+        <p class="body">The deployed site markets KJS-SRS-01 as a public, explainable mission. A visitor can meet the offer in one click or walk the longer story — problem, architecture, program, then proof. Students, faculty and the HAM community can see both the constraint (minutes of visibility, four modes, sub-1 W) and the response (autonomous routing with guard rails) without a briefing.</p>
+      </section>
+      <section class="card">
+        <h2><span class="n">10</span> Future scope</h2>
+        <ul>
+          <li>Measure the journey: page views, CTA clicks, and time on the ground station.</li>
+          <li>Extend reach with Somaiya social channels, this poster’s QR code, and a one-page brief for amateur-radio clubs.</li>
+          <li>Still open: paid reach, a non-compressed link model, and audience testing by batch. The site is a demonstration, not a spacecraft feed.</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2><span class="n">11</span> References</h2>
+        <p class="cite">[1] Chaffey, D. and Ellis-Chadwick, F. (2019) <i>Digital Marketing</i>. 7th edn. Harlow: Pearson.</p>
+        <p class="cite">[2] Hollebeek, L.D. and Macky, K. (2019) ‘Digital content marketing’s role in fostering consumer engagement, trust, and value’, <i>Journal of Interactive Marketing</i>, 45, pp. 27–41.</p>
+        <p class="cite">[3] Kotler, P., Kartajaya, H. and Setiawan, I. (2017) <i>Marketing 4.0</i>. Hoboken: Wiley.</p>
+        <p class="cite">[4] Pulizzi, J. (2014) <i>Epic Content Marketing</i>. New York: McGraw-Hill.</p>
+        <p class="cite">[5] Shinde, U. and Nikam, S. KJS-SRS-01 SomaiyaSat &amp; SomaiyaPod. KJSIT / KJSSE. https://somaiyasat.vercel.app</p>
+        <p class="cite"><b>Acknowledgement.</b> Prof. Poonam Narkhede and Dr. Ankita Nagmothe; use-case owners Dr. Umesh Shinde and Dr. Shailesh Nikam; Department of Information Technology, KJSSE, Somaiya Vidyavihar University.</p>
+      </section>
+    </div>
+
+    <footer>
+      <div>Department of Information Technology &nbsp;|&nbsp; K J Somaiya School of Engineering &nbsp;|&nbsp; Somaiya Vidyavihar University</div>
+      <div><strong>KJS-SRS-01</strong> &nbsp;·&nbsp; somaiyasat.vercel.app &nbsp;·&nbsp; Digital Marketing Lab CA</div>
+    </footer>
+  </div>
+</body>
+</html>
